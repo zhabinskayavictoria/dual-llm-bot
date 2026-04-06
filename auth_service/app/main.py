@@ -6,6 +6,7 @@ from app.db.session import engine
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    """Управляет жизненным циклом приложения"""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     yield
@@ -16,4 +17,5 @@ app.include_router(main_router)
 
 @app.get("/health")
 async def health():
+    """Проверка работоспособности"""
     return {"status": "ok"}

@@ -2,6 +2,7 @@ import httpx
 from app.core.config import settings
 
 async def call_openrouter(prompt: str) -> str:
+    """Отправляет запрос к OpenRouter API и возвращает ответ LLM."""
     async with httpx.AsyncClient() as client:
         response = await client.post(
             f"{settings.OPENROUTER_BASE_URL}/chat/completions",

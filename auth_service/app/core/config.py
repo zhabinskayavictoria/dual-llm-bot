@@ -1,6 +1,7 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
+    """Конфигурация приложения: имя, окружение, JWT настройки, путь к БД"""
     APP_NAME: str = "auth-service"
     ENV: str = "local"
     JWT_SECRET: str

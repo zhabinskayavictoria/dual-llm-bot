@@ -1,6 +1,7 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
+    """Конфигурация бота"""
     APP_NAME: str = "bot-service"
     ENV: str = "local"
 

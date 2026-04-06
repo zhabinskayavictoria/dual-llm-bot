@@ -1,13 +1,16 @@
-
 .env
 
 .venv/
 venv/
 
 *.egg-info/
-
-__pycache__/
+*.egg
 
 *.db
 
 .ruff_cache/
+.pytest_cache/
+__pycache__/
+
+/data
+data/

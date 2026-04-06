@@ -4,6 +4,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 from app.db.base import Base
 
 class User(Base):
+    """Модель пользователя: id, email, хеш пароля, роль, дата создания"""
     __tablename__ = "users"
 
     id: Mapped[int] = mapped_column(primary_key=True)
