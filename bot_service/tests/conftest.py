@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import AsyncMock
 from datetime import datetime, timedelta, timezone
-
+import fakeredis.aioredis
 from app.core.config import settings
 
 
@@ -41,3 +41,12 @@ def mock_message():
     message.answer = AsyncMock()
     message.reply = AsyncMock()
     return message
+
+
+@pytest.fixture
+async def fake_redis_client():
+    """Фикстура, возвращающая клиент FakeRedis"""
+    redis = fakeredis.aioredis.FakeRedis(decode_responses=True)
+    yield redis
+    await redis.flushall()
+    await redis.close()

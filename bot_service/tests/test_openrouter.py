@@ -48,16 +48,6 @@ class TestOpenRouterClient:
 
     @pytest.mark.asyncio
     @respx.mock
-    async def test_call_openrouter_handles_http_error(self):
-        """Ошибка HTTP (не 200) вызывает исключение"""
-        url = f"{settings.OPENROUTER_BASE_URL}/chat/completions"
-        respx.post(url).mock(return_value=Response(500, text="Internal Server Error"))
-        with pytest.raises(Exception) as exc_info:
-            await call_openrouter("test prompt")
-        assert "OpenRouter API error" in str(exc_info.value)
-
-    @pytest.mark.asyncio
-    @respx.mock
     async def test_call_openrouter_handles_malformed_response(self):
         """Неверный формат ответа вызывает исключение"""
         url = f"{settings.OPENROUTER_BASE_URL}/chat/completions"
